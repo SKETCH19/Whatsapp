@@ -50,10 +50,45 @@ body {
         radial-gradient(1px 1px at 40% 15%, white, transparent),
         radial-gradient(2px 2px at 65% 25%, white, transparent),
         radial-gradient(1px 1px at 10% 45%, white, transparent),
-        radial-gradient(1px 1px at 95% 35%, white, transparent);
+        radial-gradient(1px 1px at 95% 35%, white, transparent),
+        radial-gradient(2px 2px at 12% 22%, white, transparent),
+        radial-gradient(1px 1px at 55% 8%, white, transparent),
+        radial-gradient(2px 2px at 78% 88%, white, transparent),
+        radial-gradient(1px 1px at 35% 65%, white, transparent),
+        radial-gradient(2px 2px at 92% 15%, white, transparent),
+        radial-gradient(1px 1px at 18% 72%, white, transparent),
+        radial-gradient(1px 1px at 48% 35%, white, transparent),
+        radial-gradient(2px 2px at 72% 52%, white, transparent),
+        radial-gradient(1px 1px at 28% 48%, white, transparent),
+        radial-gradient(2px 2px at 58% 92%, white, transparent),
+        radial-gradient(1px 1px at 88% 28%, white, transparent),
+        radial-gradient(1px 1px at 5% 55%, white, transparent),
+        radial-gradient(2px 2px at 42% 12%, white, transparent),
+        radial-gradient(1px 1px at 68% 78%, white, transparent),
+        radial-gradient(2px 2px at 82% 42%, white, transparent),
+        radial-gradient(1px 1px at 22% 58%, white, transparent),
+        radial-gradient(1px 1px at 52% 68%, white, transparent),
+        radial-gradient(2px 2px at 98% 72%, white, transparent),
+        radial-gradient(1px 1px at 8% 18%, white, transparent),
+        radial-gradient(2px 2px at 62% 38%, white, transparent),
+        radial-gradient(1px 1px at 38% 82%, white, transparent),
+        radial-gradient(1px 1px at 75% 5%, white, transparent),
+        radial-gradient(2px 2px at 15% 95%, white, transparent),
+        radial-gradient(1px 1px at 47% 28%, white, transparent),
+        radial-gradient(2px 2px at 85% 65%, white, transparent),
+        radial-gradient(1px 1px at 30% 38%, white, transparent),
+        radial-gradient(1px 1px at 65% 15%, white, transparent),
+        radial-gradient(2px 2px at 95% 48%, white, transparent),
+        radial-gradient(1px 1px at 25% 75%, white, transparent),
+        radial-gradient(2px 2px at 55% 55%, white, transparent),
+        radial-gradient(1px 1px at 3% 32%, white, transparent),
+        radial-gradient(1px 1px at 77% 62%, white, transparent),
+        radial-gradient(2px 2px at 43% 88%, white, transparent),
+        radial-gradient(1px 1px at 97% 8%, white, transparent),
+        radial-gradient(2px 2px at 17% 42%, white, transparent);
     background-size: 200% 200%;
     animation: twinkleStars 8s ease-in-out infinite;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 @keyframes twinkleStars {
@@ -104,14 +139,14 @@ body {
 .cloud {
     position: absolute;
     background: linear-gradient(to bottom, 
-        rgba(150, 180, 220, 0.6), 
-        rgba(100, 140, 190, 0.5),
-        rgba(70, 110, 160, 0.4)
+        rgba(180, 210, 240, 0.85), 
+        rgba(130, 170, 220, 0.75),
+        rgba(100, 140, 190, 0.65)
     );
     border-radius: 100px;
-    opacity: 0.85;
-    filter: blur(25px);
-    box-shadow: 0 0 40px rgba(150, 180, 220, 0.3);
+    opacity: 0.95;
+    filter: blur(15px);
+    box-shadow: 0 0 60px rgba(180, 210, 240, 0.6);
 }
 
 .cloud::before,
