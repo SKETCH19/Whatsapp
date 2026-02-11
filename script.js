@@ -1,0 +1,99 @@
+// Función para mostrar el siguiente mensaje
+function showNext(messageNumber) {
+    // Ocultar todos los mensajes
+    const allMessages = document.querySelectorAll('.message-box');
+    allMessages.forEach(msg => {
+        msg.classList.add('hidden');
+    });
+    
+    // Mostrar el mensaje solicitado
+    const nextMessage = document.getElementById(`message-${messageNumber}`);
+    if (nextMessage) {
+        nextMessage.classList.remove('hidden');
+    }
+    
+    // Si es el último mensaje, iniciar el contador
+    if (messageNumber === 4) {
+        startCountdown();
+    }
+}
+
+// Función para el contador de tiempo hasta mañana
+function startCountdown() {
+    const countdownElement = document.getElementById('countdown');
+    
+    function updateCountdown() {
+        const now = new Date();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        
+        const diff = tomorrow - now;
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        countdownElement.innerHTML = `
+            ⏰ ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
+            <br>
+            <span style="font-size: 0.6em; opacity: 0.8;">hasta mañana</span>
+        `;
+        
+        if (diff <= 0) {
+            countdownElement.innerHTML = '¡Ya es mañana! 💖';
+            clearInterval(countdownInterval);
+        }
+    }
+    
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Agregar efectos de partículas cuando se hace clic en un botón
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('next-btn')) {
+        createHearts(e.pageX, e.pageY);
+    }
+});
+
+function createHearts(x, y) {
+    const hearts = ['💖', '💝', '💗', '💓', '💕', '✨', '⭐', '🌟'];
+    
+    for (let i = 0; i < 8; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.position = 'fixed';
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+        heart.style.fontSize = '20px';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '1000';
+        heart.style.animation = 'floatUp 2s ease-out forwards';
+        
+        const angle = (Math.PI * 2 * i) / 8;
+        const velocity = 100;
+        heart.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+        heart.style.setProperty('--ty', Math.sin(angle) * velocity - 200 + 'px');
+        
+        document.body.appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 2000);
+    }
+}
+
+// Agregar animación CSS para los corazones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes floatUp {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--tx), var(--ty)) scale(0);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
