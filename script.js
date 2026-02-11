@@ -12,10 +12,37 @@ function showNext(messageNumber) {
         nextMessage.classList.remove('hidden');
     }
     
+    // Actualizar el timeline
+    updateTimeline(messageNumber);
+    
     // Si es el último mensaje, iniciar el contador
     if (messageNumber === 4) {
         startCountdown();
     }
+    
+    // Scroll suave al contenido
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Función para actualizar el estado del timeline
+function updateTimeline(currentMessage) {
+    const steps = document.querySelectorAll('.timeline-step');
+    
+    steps.forEach((step, index) => {
+        step.classList.remove('active');
+        
+        // Marcar como visitados los anteriores
+        if (index < currentMessage) {
+            step.classList.add('visited');
+        } else if (index === currentMessage) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('visited');
+        }
+    });
 }
 
 // Función para el contador de tiempo hasta mañana
@@ -58,21 +85,22 @@ document.addEventListener('click', function(e) {
 });
 
 function createHearts(x, y) {
-    const hearts = ['💖', '💝', '💗', '💓', '💕', '✨', '⭐', '🌟'];
+    const hearts = ['❤️', '💖', '💝', '💗', '✨', '⭐', '🌟', '💫'];
     
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
         const heart = document.createElement('div');
         heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.position = 'fixed';
         heart.style.left = x + 'px';
         heart.style.top = y + 'px';
-        heart.style.fontSize = '20px';
+        heart.style.fontSize = '25px';
         heart.style.pointerEvents = 'none';
         heart.style.zIndex = '1000';
         heart.style.animation = 'floatUp 2s ease-out forwards';
+        heart.style.filter = 'drop-shadow(0 0 10px rgba(255, 0, 0, 0.8))';
         
-        const angle = (Math.PI * 2 * i) / 8;
-        const velocity = 100;
+        const angle = (Math.PI * 2 * i) / 10;
+        const velocity = 120;
         heart.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
         heart.style.setProperty('--ty', Math.sin(angle) * velocity - 200 + 'px');
         
@@ -81,6 +109,11 @@ function createHearts(x, y) {
         setTimeout(() => heart.remove(), 2000);
     }
 }
+
+// Inicializar la página
+window.addEventListener('DOMContentLoaded', function() {
+    updateTimeline(0);
+});
 
 // Agregar animación CSS para los corazones
 const style = document.createElement('style');

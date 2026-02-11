@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #0a0e27 0%, #1a1447 50%, #2d1b69 100%);
+    background: linear-gradient(to bottom, #000000 0%, #1a0000 30%, #2d0a0a 60%, #0d0000 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,6 +14,7 @@ body {
     overflow-x: hidden;
     position: relative;
     color: #fff;
+    padding-top: 100px;
 }
 
 /* Estrellas animadas - efecto galáctico */
@@ -27,18 +28,18 @@ body {
 }
 
 .stars {
-    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2"><circle cx="1" cy="1" r="1" fill="white" opacity="0.8"/></svg>') repeat;
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"><circle cx="1.5" cy="1.5" r="1" fill="white" opacity="0.9"/></svg>') repeat;
     animation: twinkle 200s linear infinite;
 }
 
 .stars2 {
-    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3"><circle cx="1.5" cy="1.5" r="1" fill="%23FFB6C1" opacity="0.6"/></svg>') repeat;
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="1.2" fill="%23ff0000" opacity="0.7"/></svg>') repeat;
     animation: twinkle 300s linear infinite;
     animation-delay: -50s;
 }
 
 .stars3 {
-    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><circle cx="2" cy="2" r="1.5" fill="%23DDA0DD" opacity="0.4"/></svg>') repeat;
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5"><circle cx="2.5" cy="2.5" r="1.5" fill="%23ff4444" opacity="0.5"/></svg>') repeat;
     animation: twinkle 400s linear infinite;
     animation-delay: -100s;
 }
@@ -60,15 +61,16 @@ body {
 
 /* Mensaje box con efecto de cristal */
 .message-box {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(20, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
     border-radius: 25px;
     padding: 40px 30px;
     text-align: center;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 0, 0, 0.4);
     box-shadow: 
-        0 8px 32px 0 rgba(255, 105, 180, 0.3),
-        inset 0 0 50px rgba(255, 182, 193, 0.1);
+        0 8px 32px 0 rgba(255, 0, 0, 0.5),
+        inset 0 0 50px rgba(255, 0, 0, 0.15),
+        0 0 100px rgba(255, 0, 0, 0.3);
     animation: fadeInScale 0.8s ease-out;
     position: relative;
     overflow: hidden;
@@ -84,7 +86,7 @@ body {
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255, 182, 193, 0.1),
+        rgba(255, 0, 0, 0.2),
         transparent
     );
     animation: shine 3s infinite;
@@ -115,7 +117,7 @@ body {
     font-size: 60px;
     margin-bottom: 20px;
     animation: heartBeat 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.8));
+    filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.9));
 }
 
 @keyframes heartBeat {
@@ -128,19 +130,19 @@ body {
 .greeting {
     font-size: 2.5em;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #FFB6C1, #FF69B4, #DDA0DD);
+    background: linear-gradient(45deg, #ff0000, #ff4444, #ff6666);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradientShift 3s ease infinite;
-    text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8));
 }
 
 .message-title {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #FFB6C1;
-    text-shadow: 0 0 20px rgba(255, 182, 193, 0.8);
+    color: #ff3333;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
 }
 
 .message-text {
@@ -160,7 +162,7 @@ body {
 
 /* Botón siguiente */
 .next-btn {
-    background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+    background: linear-gradient(135deg, #ff0000, #cc0000);
     color: white;
     border: none;
     padding: 15px 40px;
@@ -168,17 +170,18 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 25px rgba(255, 105, 180, 0.5);
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.6);
     position: relative;
     z-index: 1;
     font-weight: 600;
     letter-spacing: 1px;
+    border: 2px solid rgba(255, 0, 0, 0.3);
 }
 
 .next-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 35px rgba(255, 105, 180, 0.7);
-    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    box-shadow: 0 8px 35px rgba(255, 0, 0, 0.9);
+    background: linear-gradient(135deg, #ff3333, #ff0000);
 }
 
 .next-btn:active {
@@ -190,11 +193,12 @@ body {
     font-size: 2em;
     margin-top: 30px;
     padding: 20px;
-    background: rgba(255, 105, 180, 0.2);
+    background: rgba(255, 0, 0, 0.2);
     border-radius: 15px;
     font-weight: bold;
-    color: #FFB6C1;
-    text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+    color: #ff3333;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+    border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -256,5 +260,149 @@ body {
 
     .countdown {
         font-size: 1.3em;
+    }
+}
+
+/* Timeline de navegación */
+.timeline {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 5px 30px rgba(255, 0, 0, 0.4);
+    z-index: 1000;
+    max-width: 90%;
+    overflow-x: auto;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.timeline-step:hover .timeline-dot {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+.timeline-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(50, 0, 0, 0.8);
+    border: 2px solid rgba(255, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #999;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.timeline-step.active .timeline-dot {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    border-color: #ff0000;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.timeline-step.visited .timeline-dot {
+    background: rgba(100, 0, 0, 0.6);
+    border-color: rgba(255, 0, 0, 0.6);
+    color: #ff6666;
+}
+
+.timeline-label {
+    font-size: 0.7em;
+    color: #999;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.timeline-step.active .timeline-label {
+    color: #ff3333;
+    font-weight: bold;
+}
+
+.timeline-step.visited .timeline-label {
+    color: #ff6666;
+}
+
+.timeline-line {
+    width: 30px;
+    height: 2px;
+    background: rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.timeline-step.active ~ .timeline-line,
+.timeline-step.visited ~ .timeline-line {
+    background: rgba(255, 0, 0, 0.6);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+    }
+}
+
+/* Responsive para timeline */
+@media (max-width: 768px) {
+    .timeline {
+        padding: 10px 15px;
+        gap: 3px;
+    }
+    
+    .timeline-dot {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8em;
+    }
+    
+    .timeline-label {
+        font-size: 0.6em;
+    }
+    
+    .timeline-line {
+        width: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding: 8px 10px;
+        gap: 2px;
+    }
+    
+    .timeline-dot {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75em;
+    }
+    
+    .timeline-label {
+        font-size: 0.55em;
+    }
+    
+    .timeline-line {
+        width: 15px;
     }
 }
