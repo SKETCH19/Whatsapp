@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #0a0e27 0%, #1a1b3d 30%, #0d1b2a 60%, #000814 100%);
+    background: #000;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,8 +17,8 @@ body {
     padding-top: 100px;
 }
 
-/* Cielo nocturno */
-.night-sky {
+/* Cielo con ciclo día/noche - Ciclo de 5 minutos (60s cada fase) */
+.sky {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,9 +26,67 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 0;
+    animation: skyTransition 300s linear infinite;
 }
 
-/* Estrellas */
+@keyframes skyTransition {
+    /* Amanecer (0-20%) - 60s */
+    0% {
+        background: linear-gradient(to bottom, #1a1b3d 0%, #2d3561 20%, #4a5a8d 40%, #6a7eb5 60%, #8fa3d1 80%, #b8c6e3 100%);
+    }
+    10% {
+        background: linear-gradient(to bottom, #2d3561 0%, #4a5a8d 20%, #6a7eb5 40%, #8fa3d1 60%, #b8c6e3 80%, #dde5f4 100%);
+    }
+    20% {
+        background: linear-gradient(to bottom, #4a5a8d 0%, #6a7eb5 20%, #8fa3d1 40%, #b8c6e3 60%, #dde5f4 80%, #f0e6d2 100%);
+    }
+    
+    /* Mañana (20-40%) - 60s */
+    20% {
+        background: linear-gradient(to bottom, #87CEEB 0%, #98D8F4 30%, #B0E2FF 60%, #E0F6FF 100%);
+    }
+    30% {
+        background: linear-gradient(to bottom, #87CEEB 0%, #98D8F4 30%, #B0E2FF 60%, #E0F6FF 100%);
+    }
+    40% {
+        background: linear-gradient(to bottom, #7EC8E3 0%, #90D2F0 30%, #A8DCFF 60%, #D8F0FF 100%);
+    }
+    
+    /* Tarde (40-60%) - 60s */
+    40% {
+        background: linear-gradient(to bottom, #87CEEB 0%, #A8D8F0 30%, #C8E8FF 60%, #E8F6FF 100%);
+    }
+    50% {
+        background: linear-gradient(to bottom, #78BCE0 0%, #95D0ED 30%, #B5E0FF 60%, #D5EEFF 100%);
+    }
+    60% {
+        background: linear-gradient(to bottom, #6AB0D8 0%, #88C8E8 30%, #A8D8FF 60%, #C8E8FF 100%);
+    }
+    
+    /* Atardecer (60-80%) - 60s */
+    60% {
+        background: linear-gradient(to bottom, #FFB347 0%, #FFA07A 20%, #FF8C69 40%, #FF7F50 60%, #FF6347 80%, #FF4500 100%);
+    }
+    70% {
+        background: linear-gradient(to bottom, #FF6B47 0%, #E8754A 20%, #D17F4D 40%, #BA8950 60%, #A39353 80%, #8C9D56 100%);
+    }
+    80% {
+        background: linear-gradient(to bottom, #483D8B 0%, #2F2F5F 20%, #1F1F3F 40%, #0F0F2F 60%, #0a0e27 80%, #000814 100%);
+    }
+    
+    /* Noche (80-100%) - 60s */
+    80% {
+        background: linear-gradient(to bottom, #0a0e27 0%, #1a1b3d 30%, #0d1b2a 60%, #000814 100%);
+    }
+    90% {
+        background: linear-gradient(to bottom, #0a0e27 0%, #1a1b3d 30%, #0d1b2a 60%, #000814 100%);
+    }
+    100% {
+        background: linear-gradient(to bottom, #1a1b3d 0%, #2d3561 20%, #4a5a8d 40%, #6a7eb5 60%, #8fa3d1 80%, #b8c6e3 100%);
+    }
+}
+
+/* Estrellas - visibles solo en noche y amanecer/atardecer */
 .stars {
     position: absolute;
     top: 0;
@@ -87,8 +145,7 @@ body {
         radial-gradient(1px 1px at 97% 8%, white, transparent),
         radial-gradient(2px 2px at 17% 42%, white, transparent);
     background-size: 200% 200%;
-    animation: twinkleStars 8s ease-in-out infinite;
-    opacity: 1;
+    animation: twinkleStars 8s ease-in-out infinite, starsVisibility 300s linear infinite;
 }
 
 @keyframes twinkleStars {
@@ -96,7 +153,114 @@ body {
     50% { opacity: 1; }
 }
 
-/* Luna */
+@keyframes starsVisibility {
+    /* Noche: visible */
+    0%, 80%, 100% { opacity: 1; }
+    /* Amanecer: desvanece */
+    10% { opacity: 0.5; }
+    /* Día: invisible */
+    20%, 60% { opacity: 0; }
+    /* Atardecer: aparece */
+    70% { opacity: 0.5; }
+}
+
+/* Sol */
+.sun {
+    position: absolute;
+    top: -150px;
+    right: 20%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #FFF700, #FFD700, #FFA500);
+    box-shadow: 
+        0 0 60px rgba(255, 215, 0, 0.9),
+        0 0 120px rgba(255, 165, 0, 0.7),
+        0 0 180px rgba(255, 140, 0, 0.5);
+    animation: sunRiseSet 300s linear infinite;
+    z-index: 1;
+}
+
+.sun-core {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), transparent 60%);
+    animation: sunPulse 4s ease-in-out infinite;
+}
+
+@keyframes sunRiseSet {
+    /* Noche - sol invisible abajo */
+    0% {
+        top: 120%;
+        opacity: 0;
+        background: radial-gradient(circle at 40% 40%, #FFF700, #FFD700, #FFA500);
+    }
+    /* Amanecer - sol sale */
+    5% {
+        top: 60%;
+        opacity: 0.3;
+    }
+    10% {
+        top: 40%;
+        opacity: 0.6;
+    }
+    15% {
+        top: 20%;
+        opacity: 1;
+    }
+    /* Mañana - sol arriba */
+    20% {
+        top: 8%;
+        opacity: 1;
+        background: radial-gradient(circle at 40% 40%, #FFF700, #FFD700, #FFA500);
+    }
+    /* Tarde - sol empieza a bajar */
+    40% {
+        top: 8%;
+        opacity: 1;
+    }
+    50% {
+        top: 15%;
+        opacity: 1;
+    }
+    /* Atardecer - sol se pone */
+    60% {
+        top: 25%;
+        opacity: 1;
+        background: radial-gradient(circle at 40% 40%, #FF6B47, #FF8C69, #FFA07A);
+    }
+    65% {
+        top: 40%;
+        opacity: 0.8;
+    }
+    70% {
+        top: 60%;
+        opacity: 0.5;
+    }
+    75% {
+        top: 80%;
+        opacity: 0.2;
+    }
+    /* Noche - sol invisible */
+    80%, 100% {
+        top: 120%;
+        opacity: 0;
+    }
+}
+
+@keyframes sunPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+/* Luna con diferentes fases */
 .moon {
     position: absolute;
     top: 10%;
@@ -109,7 +273,22 @@ body {
         0 0 60px rgba(255, 255, 255, 0.8),
         0 0 100px rgba(200, 220, 255, 0.6),
         inset -10px -10px 20px rgba(0, 0, 0, 0.1);
-    animation: moonGlow 4s ease-in-out infinite;
+    animation: moonGlow 4s ease-in-out infinite, moonPhases 300s linear infinite, moonVisibility 300s linear infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sombra para crear las fases de la luna */
+.moon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #0a0e27, rgba(10, 14, 39, 0.8));
+    animation: moonPhaseShadow 300s linear infinite;
 }
 
 @keyframes moonGlow {
@@ -127,26 +306,110 @@ body {
     }
 }
 
-/* Nubes */
+@keyframes moonPhases {
+    /* Luna llena */
+    0%, 10% {
+        transform: rotate(0deg);
+    }
+    /* Menguante */
+    25% {
+        transform: rotate(90deg);
+    }
+    /* Luna nueva (casi invisible) */
+    50% {
+        transform: rotate(180deg);
+    }
+    /* Creciente */
+    75% {
+        transform: rotate(270deg);
+    }
+    /* De vuelta a luna llena */
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moonPhaseShadow {
+    /* Luna llena - sin sombra */
+    0%, 10% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+    /* Menguante - sombra desde la izquierda */
+    15% {
+        transform: translateX(80%);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateX(20%);
+        opacity: 0.7;
+    }
+    /* Luna nueva - completamente cubierta */
+    45%, 55% {
+        transform: translateX(-50%);
+        opacity: 0.95;
+    }
+    /* Creciente - sombra desde la derecha */
+    65% {
+        transform: translateX(-20%);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateX(20%);
+        opacity: 0.5;
+    }
+    85% {
+        transform: translateX(80%);
+        opacity: 0.2;
+    }
+    /* De vuelta a luna llena */
+    90%, 100% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+}
+
+@keyframes moonVisibility {
+    /* Visible en noche y transiciones */
+    0%, 80%, 100% { opacity: 1; }
+    /* Desvanece en amanecer */
+    10%, 15% { opacity: 0.5; }
+    /* Invisible durante el día */
+    20%, 60% { opacity: 0; }
+    /* Aparece en atardecer */
+    70%, 75% { opacity: 0.5; }
+}
+
+/* Nubes - siempre visibles pero con diferentes opacidades */
 .clouds {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    animation: cloudsVisibility 300s linear infinite;
+}
+
+@keyframes cloudsVisibility {
+    /* Noche - más transparentes */
+    0%, 80%, 100% { opacity: 0.4; }
+    /* Día - más opacas */
+    20%, 60% { opacity: 0.85; }
 }
 
 .cloud {
     position: absolute;
     background: linear-gradient(to bottom, 
-        rgba(180, 210, 240, 0.85), 
-        rgba(130, 170, 220, 0.75),
-        rgba(100, 140, 190, 0.65)
+        rgba(255, 255, 255, 0.9), 
+        rgba(240, 248, 255, 0.8),
+        rgba(220, 235, 255, 0.7)
     );
     border-radius: 100px;
     opacity: 0.95;
     filter: blur(15px);
-    box-shadow: 0 0 60px rgba(180, 210, 240, 0.6);
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.4);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 .cloud::before,
@@ -162,7 +425,8 @@ body {
     height: 100px;
     top: 20%;
     left: -300px;
-    animation: moveCloud1 60s linear infinite;
+    animation-name: moveCloud1;
+    animation-duration: 60s;
 }
 
 .cloud2 {
@@ -170,7 +434,8 @@ body {
     height: 120px;
     top: 40%;
     left: -400px;
-    animation: moveCloud2 80s linear infinite;
+    animation-name: moveCloud2;
+    animation-duration: 80s;
     animation-delay: -20s;
 }
 
@@ -179,7 +444,8 @@ body {
     height: 110px;
     top: 60%;
     left: -350px;
-    animation: moveCloud3 70s linear infinite;
+    animation-name: moveCloud3;
+    animation-duration: 70s;
     animation-delay: -40s;
 }
 
@@ -188,7 +454,8 @@ body {
     height: 90px;
     top: 15%;
     left: -280px;
-    animation: moveCloud4 65s linear infinite;
+    animation-name: moveCloud4;
+    animation-duration: 65s;
     animation-delay: -10s;
 }
 
@@ -197,7 +464,8 @@ body {
     height: 105px;
     top: 75%;
     left: -320px;
-    animation: moveCloud5 75s linear infinite;
+    animation-name: moveCloud5;
+    animation-duration: 75s;
     animation-delay: -30s;
 }
 
@@ -224,6 +492,187 @@ body {
 @keyframes moveCloud5 {
     0% { left: -320px; }
     100% { left: 110%; }
+}
+
+/* Pájaros - visibles solo durante el día */
+.birds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: birdsVisibility 300s linear infinite;
+    z-index: 5;
+}
+
+@keyframes birdsVisibility {
+    /* Invisible en noche */
+    0%, 10%, 75%, 100% { opacity: 0; }
+    /* Visible durante el día */
+    20%, 60% { opacity: 1; }
+    /* Transiciones */
+    15% { opacity: 0.3; }
+    70% { opacity: 0.5; }
+}
+
+.bird {
+    position: absolute;
+    animation: flyBird linear infinite;
+}
+
+.bird-body {
+    position: relative;
+    width: 20px;
+    height: 15px;
+}
+
+.wing {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 8px;
+    background: #333;
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+}
+
+.wing-left {
+    left: -12px;
+    animation: flapWingLeft 0.4s ease-in-out infinite;
+}
+
+.wing-right {
+    right: -12px;
+    animation: flapWingRight 0.4s ease-in-out infinite;
+}
+
+@keyframes flapWingLeft {
+    0%, 100% {
+        transform: rotateZ(-20deg) rotateY(0deg);
+    }
+    50% {
+        transform: rotateZ(-60deg) rotateY(-30deg);
+    }
+}
+
+@keyframes flapWingRight {
+    0%, 100% {
+        transform: rotateZ(20deg) rotateY(0deg);
+    }
+    50% {
+        transform: rotateZ(60deg) rotateY(30deg);
+    }
+}
+
+.bird1 {
+    top: 15%;
+    left: -50px;
+    animation-name: flyBird1;
+    animation-duration: 45s;
+}
+
+.bird2 {
+    top: 30%;
+    left: -50px;
+    animation-name: flyBird2;
+    animation-duration: 55s;
+    animation-delay: -15s;
+}
+
+.bird3 {
+    top: 25%;
+    left: -50px;
+    animation-name: flyBird3;
+    animation-duration: 50s;
+    animation-delay: -30s;
+}
+
+.bird4 {
+    top: 40%;
+    left: -50px;
+    animation-name: flyBird4;
+    animation-duration: 60s;
+    animation-delay: -45s;
+}
+
+@keyframes flyBird1 {
+    0% {
+        left: -50px;
+        top: 15%;
+    }
+    25% {
+        top: 18%;
+    }
+    50% {
+        top: 12%;
+    }
+    75% {
+        top: 17%;
+    }
+    100% {
+        left: 110%;
+        top: 15%;
+    }
+}
+
+@keyframes flyBird2 {
+    0% {
+        left: -50px;
+        top: 30%;
+    }
+    25% {
+        top: 27%;
+    }
+    50% {
+        top: 33%;
+    }
+    75% {
+        top: 28%;
+    }
+    100% {
+        left: 110%;
+        top: 30%;
+    }
+}
+
+@keyframes flyBird3 {
+    0% {
+        left: -50px;
+        top: 25%;
+    }
+    25% {
+        top: 22%;
+    }
+    50% {
+        top: 28%;
+    }
+    75% {
+        top: 23%;
+    }
+    100% {
+        left: 110%;
+        top: 25%;
+    }
+}
+
+@keyframes flyBird4 {
+    0% {
+        left: -50px;
+        top: 40%;
+    }
+    25% {
+        top: 38%;
+    }
+    50% {
+        top: 42%;
+    }
+    75% {
+        top: 39%;
+    }
+    100% {
+        left: 110%;
+        top: 40%;
+    }
 }
 
 /* Container principal */
@@ -422,6 +871,21 @@ body {
         top: 5%;
         right: 10%;
     }
+
+    .sun {
+        width: 100px;
+        height: 100px;
+    }
+
+    .bird-body {
+        width: 15px;
+        height: 10px;
+    }
+
+    .wing {
+        width: 12px;
+        height: 6px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -450,6 +914,21 @@ body {
         height: 60px;
         top: 3%;
         right: 5%;
+    }
+
+    .sun {
+        width: 80px;
+        height: 80px;
+    }
+
+    .bird-body {
+        width: 12px;
+        height: 8px;
+    }
+
+    .wing {
+        width: 10px;
+        height: 5px;
     }
 }
 
