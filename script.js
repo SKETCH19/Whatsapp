@@ -16,7 +16,7 @@ function showNext(messageNumber) {
     updateTimeline(messageNumber);
     
     // Si es el mensaje del contador (último mensaje), iniciarlo
-    if (messageNumber === 6) {
+    if (messageNumber === 9) {
         startCountdown();
     }
     
