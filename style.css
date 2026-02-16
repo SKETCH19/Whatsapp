@@ -1080,4 +1080,10 @@ body {
     .timeline-line {
         width: 15px;
     }
+.timeline-dot:empty::before {
+    content: "○";
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+    
 }
