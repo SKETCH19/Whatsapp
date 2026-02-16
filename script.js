@@ -16,7 +16,7 @@ function showNext(messageNumber) {
     updateTimeline(messageNumber);
     
     // Si es el mensaje del contador (último mensaje), iniciarlo
-    if (messageNumber === 8) {
+    if (messageNumber === 6) {
         startCountdown();
     }
     
@@ -62,14 +62,18 @@ function startCountdown() {
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
         countdownElement.innerHTML = `
-            <span style="font-size: 0.8em;">⏰ ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}</span>
+            ⏰ ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
             <br>
-            <span style="font-size: 0.7em; opacity: 0.8;">hasta mañana</span>
+            <span style="font-size: 0.6em; opacity: 0.8;">hasta mañana</span>
         `;
+        
+        // Si llega a 0, el contador se reiniciará automáticamente en la próxima actualización
+        // porque calculará un nuevo "tomorrow" (24 horas más)
     }
     
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // El contador se actualiza cada segundo y siempre se reinicia automáticamente cada 24 horas
+    const countdownInterval = setInterval(updateCountdown, 1000);
 }
 
 // Agregar efectos de partículas cuando se hace clic en un botón
@@ -107,7 +111,7 @@ function createHearts(x, y) {
 
 // Inicializar la página
 window.addEventListener('DOMContentLoaded', function() {
-    showNext(0);
+    updateTimeline(0);
 });
 
 // Agregar animación CSS para los corazones

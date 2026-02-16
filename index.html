@@ -82,23 +82,8 @@
         </div>
         <div class="timeline-line"></div>
         <div class="timeline-step" data-message="6" onclick="showNext(6)">
-            <div class="timeline-dot empty-dot"></div>
+            <div class="timeline-dot">7</div>
             <div class="timeline-label">Mañana</div>
-        </div>
-        <div class="timeline-line"></div>
-        <div class="timeline-step" data-message="7" onclick="showNext(7)">
-            <div class="timeline-dot">8</div>
-            <div class="timeline-label">Firmeza</div>
-        </div>
-        <div class="timeline-line"></div>
-        <div class="timeline-step" data-message="8" onclick="showNext(8)">
-            <div class="timeline-dot">9</div>
-            <div class="timeline-label">Autonomía</div>
-        </div>
-        <div class="timeline-line"></div>
-        <div class="timeline-step" data-message="9" onclick="showNext(9)">
-            <div class="timeline-dot"></div>
-            <div class="timeline-label">Continuará</div>
         </div>
     </div>
     
@@ -141,6 +126,13 @@ Y en esa elección, encontré el amor que no buscaba, pero que era todo lo que n
             <button class="next-btn" onclick="showNext(4)">Siguiente</button>
         </div>
 
+        <div class="message-box hidden" id="message-2">
+            <div class="heart-icon">📚</div>
+            <h2 class="message-title">Filosofía</h2>
+            <p class="message-text">La sabiduría está en cada momento que vivimos y compartimos.</p>
+            <button class="next-btn" onclick="showNext(3)">Siguiente</button>
+        </div>
+
         <div class="message-box hidden" id="message-4">
             <div class="heart-icon">💪</div>
             <h2 class="message-title">La diferencia entre terminar y rendirse</h2>
@@ -158,29 +150,10 @@ Cuando Cam Newton se da cuenta de que en su corazón nunca terminaría, está re
         </div>
 
         <div class="message-box hidden" id="message-6">
-            <div class="heart-icon">🔥</div>
-            <h2 class="message-title">QUIERO QUE TE METAS ESTO MUY BIEN EN LA CABEZA</h2>
-            <p class="message-text"></p>
-            <button class="next-btn" onclick="showNext(7)">Siguiente</button>
-        </div>
-
-        <div class="message-box hidden" id="message-7">
-            <div class="heart-icon">⚡</div>
-            <h2 class="message-title">Autonomía</h2>
-            <p class="message-text">Deja de consultar cada paso como si tu vida fuera un proyecto colectivo.<br><br>
-Hay decisiones que pierden fuerza cuando pasan por demasiadas manos.<br><br>
-Asume el costo de elegir.<br><br>
-Ese costo es el precio de la autonomía.<br><br>
-No todos entenderán tu camino.<br><br>
-No todos necesitan hacerlo.</p>
-            <button class="next-btn" onclick="showNext(8)">Siguiente</button>
-        </div>
-
-        <div class="message-box hidden" id="message-8">
-            <div class="heart-icon">💖</div>
-            <h1 class="greeting">Hey, There! ✨</h1>
-            <p class="message-text">Disfruta De Esta Linda Línea Temporal...</p>
-            <button class="next-btn" onclick="showNext(0)">Volver al inicio</button>
+            <div class="heart-icon">⏳</div>
+            <h2 class="message-title">Continuará...</h2>
+            <p class="message-text">Espera a mañana para poder ver el siguiente mensaje...</p>
+            <div class="countdown" id="countdown"></div>
         </div>
     </div>
 
