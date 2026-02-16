@@ -107,7 +107,7 @@ function createHearts(x, y) {
 
 // Inicializar la página
 window.addEventListener('DOMContentLoaded', function() {
-    updateTimeline(0);
+    showNext(0);
 });
 
 // Agregar animación CSS para los corazones

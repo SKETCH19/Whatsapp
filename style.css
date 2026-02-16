@@ -1009,6 +1009,12 @@ body {
     transition: all 0.3s ease;
 }
 
+.timeline-dot.empty-dot {
+    background: rgba(13, 27, 42, 0.8);
+    border: 2px solid rgba(135, 206, 250, 0.4);
+    color: transparent;
+}
+
 .timeline-step.active .timeline-label {
     color: #87ceeb;
     font-weight: bold;
