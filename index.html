@@ -146,13 +146,6 @@ Y en esa elección, encontré el amor que no buscaba, pero que era todo lo que n
             <button class="next-btn" onclick="showNext(4)">Siguiente</button>
         </div>
 
-        <div class="message-box hidden" id="message-2">
-            <div class="heart-icon">📚</div>
-            <h2 class="message-title">Filosofía</h2>
-            <p class="message-text">La sabiduría está en cada momento que vivimos y compartimos.</p>
-            <button class="next-btn" onclick="showNext(3)">Siguiente</button>
-        </div>
-
         <div class="message-box hidden" id="message-4">
             <div class="heart-icon">💪</div>
             <h2 class="message-title">La diferencia entre terminar y rendirse</h2>
@@ -196,9 +189,14 @@ No todos necesitan hacerlo.</p>
         </div>
 
         <div class="message-box hidden" id="message-9">
-            <div class="heart-icon">💪</div>
+            <div class="heart-icon">🎵</div>
             <h2 class="message-title">Just a song for YOU</h2>
-            <p class="message-text"></p>
+            <div class="video-container">
+                <video id="songVideo" width="100%" controls autoplay>
+                    <source src="SONG.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
             <button class="next-btn" onclick="showNext(10)">Siguiente</button>
         </div>
 
