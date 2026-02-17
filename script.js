@@ -15,8 +15,18 @@ function showNext(messageNumber) {
     // Actualizar el timeline
     updateTimeline(messageNumber);
     
-    // Si es el mensaje del contador (último mensaje), iniciarlo
+    // Si es el mensaje del video (mensaje 9), reproducirlo automáticamente
     if (messageNumber === 9) {
+        const video = document.getElementById('songVideo');
+        if (video) {
+            video.play().catch(err => {
+                console.log('Error al reproducir el video:', err);
+            });
+        }
+    }
+    
+    // Si es el mensaje del contador (último mensaje), iniciarlo
+    if (messageNumber === 10) {
         startCountdown();
     }
     
@@ -126,6 +136,21 @@ style.textContent = `
             transform: translate(var(--tx), var(--ty)) scale(0);
             opacity: 0;
         }
+    }
+    
+    /* Estilos para el contenedor del video */
+    .video-container {
+        margin: 20px 0;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(135, 206, 250, 0.3);
+    }
+    
+    .video-container video {
+        display: block;
+        border-radius: 15px;
+        max-width: 100%;
+        height: auto;
     }
 `;
 document.head.appendChild(style);
